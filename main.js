@@ -1,16 +1,7 @@
 var dogContainer = document.getElementById("dog");
-var button = document.getElementById("generate");
 var select = document.getElementById("dogDropDown");
 
-button.addEventListener("click", generateDog);
-
-function generateDog() {
-    button.innerHTML = "Generating Pup...";
-    axios.get("https://dog.ceo/api/breeds/image/random").then(function(data) {
-        dogContainer.innerHTML = `<img src="${data.data.message}" style="height: 300px; width: auto">`
-        button.innerHTML = "Generate Pup";    
-    });
-}
+generateDropdown();
 
 function generateDropdown() {
     axios.get("https://dog.ceo/api/breeds/list").then(function(response) {
@@ -21,4 +12,10 @@ function generateDropdown() {
     });
 }
 
-generateDropdown();
+select.addEventListener("change", function() {
+    console.log(this.value);
+    // axios.get(`"https://dog.ceo/api/${this.value}/image/random"`).then(function(response) {
+    //     dogContainer.innerHTML = `<img src="${response.data.message}" style="height: 300px; width: auto">`  
+    // });
+});
+
