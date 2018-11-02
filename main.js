@@ -13,9 +13,10 @@ function generateDropdown() {
 }
 
 select.addEventListener("change", function() {
-    console.log(this.value);
-    // axios.get(`"https://dog.ceo/api/${this.value}/image/random"`).then(function(response) {
-    //     dogContainer.innerHTML = `<img src="${response.data.message}" style="height: 300px; width: auto">`  
-    // });
+    var breed = this.value;
+    //apparently you don't need to have "" or '' around the URL if you are using the `` for template literals!!!
+    axios.get(`https://dog.ceo/api/breed/${breed}/images/random`).then(function(response) {
+        dogContainer.innerHTML = `<img src="${response.data.message}" style="height: 300px; width: auto">`;  
+    });
 });
 
